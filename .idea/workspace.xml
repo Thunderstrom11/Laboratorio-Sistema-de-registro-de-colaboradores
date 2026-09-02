@@ -4,16 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfba2362-0fdb-4abd-b486-1d3a5c3c1ada" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="dfba2362-0fdb-4abd-b486-1d3a5c3c1ada" name="Changes" comment="controlador, clase colaborador.">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/controllers/DistributorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/models/Collaborator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/utils/AlertUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/DistributorApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/HelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ni/edu/uam/sistema_de_registro_de_colaboradores/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ni/edu/uam/sistema_de_registro_de_colaboradores/distributor-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -42,6 +56,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -57,8 +74,14 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "Jose-Salgado",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -79,10 +102,34 @@
       <updated>1788377806513</updated>
       <workItem from="1788377807779" duration="55000" />
       <workItem from="1788377882707" duration="295000" />
+      <workItem from="1788378185952" duration="2878000" />
     </task>
+    <task id="LOCAL-00001" summary="inicio">
+      <option name="closed" value="true" />
+      <created>1788378277335</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1788378277336</updated>
+    </task>
+    <task id="LOCAL-00002" summary="controlador, clase colaborador.">
+      <option name="closed" value="true" />
+      <created>1788380475426</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1788380475426</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="inicio" />
+    <MESSAGE value="renombre" />
+    <MESSAGE value="controlador, clase colaborador." />
+    <option name="LAST_COMMIT_MESSAGE" value="controlador, clase colaborador." />
   </component>
 </project>
