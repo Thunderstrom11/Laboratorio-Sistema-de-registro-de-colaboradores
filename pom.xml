@@ -16,6 +16,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.46</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>21.0.6</version>
@@ -49,6 +55,13 @@
                 <configuration>
                     <source>25</source>
                     <target>25</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.46</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
             <plugin>
@@ -61,7 +74,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                ni.edu.uam.sistema_de_registro_de_colaboradores/ni.edu.uam.sistema_de_registro_de_colaboradores.HelloApplication
+                                ni.edu.uam.sistema_de_registro_de_colaboradores/ni.edu.uam.sistema_de_registro_de_colaboradores.DistributorApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
