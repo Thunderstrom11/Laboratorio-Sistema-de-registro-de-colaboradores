@@ -5,20 +5,27 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToolBar;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import ni.edu.uam.sistema_de_registro_de_colaboradores.models.Collaborator;
 import ni.edu.uam.sistema_de_registro_de_colaboradores.utils.AlertUtils;
 
@@ -27,41 +34,47 @@ import java.time.LocalDate;
 public class DistributorController {
 
     @FXML
-    private TextField txtFirstName;
+    private TextField txtName;
     @FXML
-    private TextField txtLastName;
+    private TextField txtSurname;
     @FXML
     private TextField txtUsername;
     @FXML
-    private PasswordField pfPassword;
+    private PasswordField pwfPassword;
     @FXML
-    private ComboBox<String> cmbPosition;
+    private ComboBox<String> cbCharge;
     @FXML
-    private ListView<String> lstWorkArea;
+    private DatePicker dpContractdate;
     @FXML
-    private DatePicker dpHireDate;
+    private ListView<String> lstvContracttype;
     @FXML
-    private RadioButton rbFullTime;
+    private RadioButton rbtnNormalcontract;
     @FXML
-    private RadioButton rbPartTime;
+    private RadioButton rbtnAnnormalcontract;
     @FXML
-    private CheckBox chkMedicalInsurance;
+    private CheckBox chbxVacations;
     @FXML
-    private CheckBox chkPaidVacation;
+    private CheckBox chxbSaturdaysoff;
     @FXML
-    private CheckBox chkBonus;
+    private CheckBox chxbExit6pm;
     @FXML
-    private TableView<Collaborator> tvCollaborators;
+    private Button btnSave;
     @FXML
-    private TableColumn<Collaborator, String> colFullName;
+    private Button btnClean;
     @FXML
-    private TableColumn<Collaborator, String> colPosition;
+    private Button btnDelete;
     @FXML
-    private TableColumn<Collaborator, String> colWorkArea;
+    private TableView<Collaborator> tvUsers;
     @FXML
-    private TableColumn<Collaborator, String> colHireDate;
+    private TableColumn<Collaborator, String> colFullname;
     @FXML
-    private TableColumn<Collaborator, String> colContractType;
+    private TableColumn<Collaborator, String> colCharge;
+    @FXML
+    private TableColumn<Collaborator, String> colArea;
+    @FXML
+    private TableColumn<Collaborator, String> colContractdate;
+    @FXML
+    private TableColumn<Collaborator, String> colContracttype;
     @FXML
     private TableColumn<Collaborator, String> colBenefits;
 
@@ -69,20 +82,46 @@ public class DistributorController {
 
     @FXML
     protected void initialize() {
-        cmbPosition.getItems().addAll("Vendedor", "Bodeguero", "Contador", "Administrador");
-        lstWorkArea.getItems().addAll("Ventas", "Bodega", "Administracion", "Logistica");
+        cbCharge.getItems().addAll("Vendedor", "Bodeguero", "Contador", "Administrador");
+        lstvContracttype.getItems().addAll("Ventas", "Bodega", "Administracion", "Logistica");
 
-        colFullName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-        colPosition.setCellValueFactory(new PropertyValueFactory<>("position"));
-        colWorkArea.setCellValueFactory(new PropertyValueFactory<>("workArea"));
-        colHireDate.setCellValueFactory(new PropertyValueFactory<>("hireDateText"));
-        colContractType.setCellValueFactory(new PropertyValueFactory<>("contractType"));
+        colFullname.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        colCharge.setCellValueFactory(new PropertyValueFactory<>("position"));
+        colArea.setCellValueFactory(new PropertyValueFactory<>("workArea"));
+        colContractdate.setCellValueFactory(new PropertyValueFactory<>("hireDateText"));
+        colContracttype.setCellValueFactory(new PropertyValueFactory<>("contractType"));
         colBenefits.setCellValueFactory(new PropertyValueFactory<>("benefits"));
 
-        tvCollaborators.setItems(collaborators);
+        tvUsers.setItems(collaborators);
+
+        btnSave.setOnAction(this::saveCollaborator);
+        btnClean.setOnAction(e -> clearForm());
+        btnDelete.setOnAction(this::deleteCollaborator);
+        tvUsers.setOnMouseClicked(this::tableClick);
+
+        MenuItem editItem = new MenuItem("Editar");
+        editItem.setOnAction(this::editCollaborator);
+        MenuItem deleteItem = new MenuItem("Eliminar");
+        deleteItem.setOnAction(this::deleteCollaborator);
+        tvUsers.setContextMenu(new ContextMenu(editItem, deleteItem));
+
+        Button btnUpdate = new Button("Actualizar");
+        btnUpdate.setOnAction(this::updateCollaborator);
+        ((ToolBar) btnSave.getParent()).getItems().add(1, btnUpdate);
+
+        Platform.runLater(this::wireMenusAndKeys);
     }
 
-    @FXML
+    private void wireMenusAndKeys() {
+        Scene scene = btnSave.getScene();
+        VBox root = (VBox) scene.getRoot();
+        MenuBar menuBar = (MenuBar) root.getChildren().get(1);
+        menuBar.getMenus().get(0).getItems().get(0).setOnAction(e -> clearForm());
+        menuBar.getMenus().get(1).getItems().get(0).setOnAction(e -> Platform.exit());
+        menuBar.getMenus().get(2).getItems().get(0).setOnAction(e -> showAbout());
+        scene.setOnKeyPressed(this::keyPressed);
+    }
+
     private void saveCollaborator(ActionEvent event) {
         String error = validateForm();
         if (error != null) {
@@ -90,13 +129,13 @@ public class DistributorController {
             return;
         }
         Collaborator collaborator = new Collaborator(
-                txtFirstName.getText(),
-                txtLastName.getText(),
+                txtName.getText(),
+                txtSurname.getText(),
                 txtUsername.getText(),
-                pfPassword.getText(),
-                cmbPosition.getValue(),
-                lstWorkArea.getSelectionModel().getSelectedItem(),
-                dpHireDate.getValue(),
+                pwfPassword.getText(),
+                cbCharge.getValue(),
+                lstvContracttype.getSelectionModel().getSelectedItem(),
+                dpContractdate.getValue(),
                 selectedContractType(),
                 selectedBenefits()
         );
@@ -104,9 +143,8 @@ public class DistributorController {
         clearForm();
     }
 
-    @FXML
     private void updateCollaborator(ActionEvent event) {
-        Collaborator selected = tvCollaborators.getSelectionModel().getSelectedItem();
+        Collaborator selected = tvUsers.getSelectionModel().getSelectedItem();
         if (selected == null) {
             AlertUtils.showAlert("Sin seleccion", "Seleccione un colaborador de la tabla");
             return;
@@ -116,22 +154,21 @@ public class DistributorController {
             AlertUtils.showAlert("Datos invalidos", error);
             return;
         }
-        selected.setFirstName(txtFirstName.getText());
-        selected.setLastName(txtLastName.getText());
+        selected.setFirstName(txtName.getText());
+        selected.setLastName(txtSurname.getText());
         selected.setUsername(txtUsername.getText());
-        selected.setPassword(pfPassword.getText());
-        selected.setPosition(cmbPosition.getValue());
-        selected.setWorkArea(lstWorkArea.getSelectionModel().getSelectedItem());
-        selected.setHireDate(dpHireDate.getValue());
+        selected.setPassword(pwfPassword.getText());
+        selected.setPosition(cbCharge.getValue());
+        selected.setWorkArea(lstvContracttype.getSelectionModel().getSelectedItem());
+        selected.setHireDate(dpContractdate.getValue());
         selected.setContractType(selectedContractType());
         selected.setBenefits(selectedBenefits());
-        tvCollaborators.refresh();
+        tvUsers.refresh();
         clearForm();
     }
 
-    @FXML
     private void deleteCollaborator(ActionEvent event) {
-        Collaborator selected = tvCollaborators.getSelectionModel().getSelectedItem();
+        Collaborator selected = tvUsers.getSelectionModel().getSelectedItem();
         if (selected == null) {
             AlertUtils.showAlert("Sin seleccion", "Seleccione un colaborador de la tabla");
             return;
@@ -140,19 +177,12 @@ public class DistributorController {
         clearForm();
     }
 
-    @FXML
-    private void clearFields(ActionEvent event) {
-        clearForm();
-    }
-
-    @FXML
     private void tableClick(MouseEvent event) {
         if (event.getClickCount() == 2) {
             fillForm();
         }
     }
 
-    @FXML
     private void keyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             saveCollaborator(null);
@@ -162,23 +192,11 @@ public class DistributorController {
         }
     }
 
-    @FXML
     private void editCollaborator(ActionEvent event) {
         fillForm();
     }
 
-    @FXML
-    private void menuNew(ActionEvent event) {
-        clearForm();
-    }
-
-    @FXML
-    private void menuExit(ActionEvent event) {
-        Platform.exit();
-    }
-
-    @FXML
-    private void menuAbout(ActionEvent event) {
+    private void showAbout() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Acerca de");
         alert.setHeaderText(null);
@@ -187,42 +205,42 @@ public class DistributorController {
     }
 
     private void fillForm() {
-        Collaborator selected = tvCollaborators.getSelectionModel().getSelectedItem();
+        Collaborator selected = tvUsers.getSelectionModel().getSelectedItem();
         if (selected == null) {
             return;
         }
-        txtFirstName.setText(selected.getFirstName());
-        txtLastName.setText(selected.getLastName());
+        txtName.setText(selected.getFirstName());
+        txtSurname.setText(selected.getLastName());
         txtUsername.setText(selected.getUsername());
-        pfPassword.setText(selected.getPassword());
-        cmbPosition.setValue(selected.getPosition());
-        lstWorkArea.getSelectionModel().select(selected.getWorkArea());
-        dpHireDate.setValue(selected.getHireDate());
-        if ("Tiempo completo".equals(selected.getContractType())) {
-            rbFullTime.setSelected(true);
-        } else if ("Medio tiempo".equals(selected.getContractType())) {
-            rbPartTime.setSelected(true);
+        pwfPassword.setText(selected.getPassword());
+        cbCharge.setValue(selected.getPosition());
+        lstvContracttype.getSelectionModel().select(selected.getWorkArea());
+        dpContractdate.setValue(selected.getHireDate());
+        if ("Normal".equals(selected.getContractType())) {
+            rbtnNormalcontract.setSelected(true);
+        } else if ("Quebrado".equals(selected.getContractType())) {
+            rbtnAnnormalcontract.setSelected(true);
         }
-        chkMedicalInsurance.setSelected(selected.getBenefits().contains("Seguro medico"));
-        chkPaidVacation.setSelected(selected.getBenefits().contains("Vacaciones pagadas"));
-        chkBonus.setSelected(selected.getBenefits().contains("Bono"));
+        chbxVacations.setSelected(selected.getBenefits().contains("Vacaciones"));
+        chxbSaturdaysoff.setSelected(selected.getBenefits().contains("Sabados libres"));
+        chxbExit6pm.setSelected(selected.getBenefits().contains("Salida 6:00 PM"));
     }
 
     private String validateForm() {
-        if (txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty()
-                || txtUsername.getText().isEmpty() || pfPassword.getText().isEmpty()
-                || cmbPosition.getValue() == null
-                || lstWorkArea.getSelectionModel().getSelectedItem() == null
-                || dpHireDate.getValue() == null || selectedContractType() == null) {
+        if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty()
+                || txtUsername.getText().isEmpty() || pwfPassword.getText().isEmpty()
+                || cbCharge.getValue() == null
+                || lstvContracttype.getSelectionModel().getSelectedItem() == null
+                || dpContractdate.getValue() == null || selectedContractType() == null) {
             return "Ningun campo puede quedar vacio";
         }
         if (txtUsername.getText().length() < 5) {
             return "El usuario debe tener al menos 5 caracteres";
         }
-        if (pfPassword.getText().length() < 8) {
+        if (pwfPassword.getText().length() < 8) {
             return "La contrasena debe tener al menos 8 caracteres";
         }
-        if (dpHireDate.getValue().isAfter(LocalDate.now())) {
+        if (dpContractdate.getValue().isAfter(LocalDate.now())) {
             return "La fecha de contratacion no puede ser posterior a la actual";
         }
         if (selectedBenefits().isEmpty()) {
@@ -232,25 +250,25 @@ public class DistributorController {
     }
 
     private String selectedContractType() {
-        if (rbFullTime.isSelected()) {
-            return "Tiempo completo";
+        if (rbtnNormalcontract.isSelected()) {
+            return "Normal";
         }
-        if (rbPartTime.isSelected()) {
-            return "Medio tiempo";
+        if (rbtnAnnormalcontract.isSelected()) {
+            return "Quebrado";
         }
         return null;
     }
 
     private String selectedBenefits() {
         String benefits = "";
-        if (chkMedicalInsurance.isSelected()) {
-            benefits = benefits + "Seguro medico, ";
+        if (chbxVacations.isSelected()) {
+            benefits = benefits + "Vacaciones, ";
         }
-        if (chkPaidVacation.isSelected()) {
-            benefits = benefits + "Vacaciones pagadas, ";
+        if (chxbSaturdaysoff.isSelected()) {
+            benefits = benefits + "Sabados libres, ";
         }
-        if (chkBonus.isSelected()) {
-            benefits = benefits + "Bono, ";
+        if (chxbExit6pm.isSelected()) {
+            benefits = benefits + "Salida 6:00 PM, ";
         }
         if (benefits.length() > 0) {
             benefits = benefits.substring(0, benefits.length() - 2);
@@ -259,17 +277,17 @@ public class DistributorController {
     }
 
     private void clearForm() {
-        txtFirstName.clear();
-        txtLastName.clear();
+        txtName.clear();
+        txtSurname.clear();
         txtUsername.clear();
-        pfPassword.clear();
-        cmbPosition.setValue(null);
-        lstWorkArea.getSelectionModel().clearSelection();
-        dpHireDate.setValue(null);
-        rbFullTime.setSelected(false);
-        rbPartTime.setSelected(false);
-        chkMedicalInsurance.setSelected(false);
-        chkPaidVacation.setSelected(false);
-        chkBonus.setSelected(false);
+        pwfPassword.clear();
+        cbCharge.setValue(null);
+        lstvContracttype.getSelectionModel().clearSelection();
+        dpContractdate.setValue(null);
+        rbtnNormalcontract.setSelected(false);
+        rbtnAnnormalcontract.setSelected(false);
+        chbxVacations.setSelected(false);
+        chxbSaturdaysoff.setSelected(false);
+        chxbExit6pm.setSelected(false);
     }
 }

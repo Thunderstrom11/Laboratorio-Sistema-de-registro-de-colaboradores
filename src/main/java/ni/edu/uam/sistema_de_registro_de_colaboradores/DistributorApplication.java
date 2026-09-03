@@ -10,8 +10,8 @@ import java.io.IOException;
 public class DistributorApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DistributorApplication.class.getResource("distributor-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 700);
+        FXMLLoader fxmlLoader = new FXMLLoader(DistributorApplication.class.getResource("registro-colaboradores.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Sistema de Registro de Colaboradores");
         stage.setScene(scene);
         stage.show();

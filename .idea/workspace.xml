@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dfba2362-0fdb-4abd-b486-1d3a5c3c1ada" name="Changes" comment="controlador, clase colaborador.">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/controllers/DistributorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/models/Collaborator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/utils/AlertUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/DistributorApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ni/edu/uam/sistema_de_registro_de_colaboradores/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ni/edu/uam/sistema_de_registro_de_colaboradores/distributor-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/DistributorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/DistributorApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/controllers/DistributorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ni/edu/uam/sistema_de_registro_de_colaboradores/controllers/DistributorController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,24 +59,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Jose-Salgado",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Jose-Salgado&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -102,7 +95,8 @@
       <updated>1788377806513</updated>
       <workItem from="1788377807779" duration="55000" />
       <workItem from="1788377882707" duration="295000" />
-      <workItem from="1788378185952" duration="2878000" />
+      <workItem from="1788378185952" duration="4080000" />
+      <workItem from="1788447897094" duration="297000" />
     </task>
     <task id="LOCAL-00001" summary="inicio">
       <option name="closed" value="true" />
