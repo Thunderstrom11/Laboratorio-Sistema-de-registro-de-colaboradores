@@ -20,7 +20,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToolBar;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -60,6 +59,8 @@ public class DistributorController {
     @FXML
     private Button btnSave;
     @FXML
+    private Button btnUpdate;
+    @FXML
     private Button btnClean;
     @FXML
     private Button btnDelete;
@@ -95,6 +96,7 @@ public class DistributorController {
         tvUsers.setItems(collaborators);
 
         btnSave.setOnAction(this::saveCollaborator);
+        btnUpdate.setOnAction(this::updateCollaborator);
         btnClean.setOnAction(e -> clearForm());
         btnDelete.setOnAction(this::deleteCollaborator);
         tvUsers.setOnMouseClicked(this::tableClick);
@@ -104,10 +106,6 @@ public class DistributorController {
         MenuItem deleteItem = new MenuItem("Eliminar");
         deleteItem.setOnAction(this::deleteCollaborator);
         tvUsers.setContextMenu(new ContextMenu(editItem, deleteItem));
-
-        Button btnUpdate = new Button("Actualizar");
-        btnUpdate.setOnAction(this::updateCollaborator);
-        ((ToolBar) btnSave.getParent()).getItems().add(1, btnUpdate);
 
         Platform.runLater(this::wireMenusAndKeys);
     }

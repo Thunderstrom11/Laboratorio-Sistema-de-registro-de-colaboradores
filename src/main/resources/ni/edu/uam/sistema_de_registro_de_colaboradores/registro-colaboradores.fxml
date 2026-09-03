@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_CENTER" prefHeight="489.0" prefWidth="751.0" spacing="10.0" style="-fx-background-color: #a6a6a6;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.edu.uam.sistema_de_registro_de_colaboradores.HelloController">
+<VBox alignment="TOP_CENTER" prefHeight="489.0" prefWidth="751.0" spacing="10.0" style="-fx-background-color: #a6a6a6;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.edu.uam.sistema_de_registro_de_colaboradores.controllers.DistributorController">
     <padding>
         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
     </padding>
@@ -54,6 +54,7 @@
                               <ToolBar prefHeight="40.0" prefWidth="200.0">
                                 <items>
                                   <Button fx:id="btnSave" mnemonicParsing="false" text="Guardar" />
+                                    <Button fx:id="btnUpdate" mnemonicParsing="false" text="Actualizar" />
                                     <Button fx:id="btnClean" mnemonicParsing="false" text="Limpiar" />
                                     <Button fx:id="btnDelete" mnemonicParsing="false" text="Eliminar" />
                                 </items>
